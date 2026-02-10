@@ -2,6 +2,7 @@ import { WalletConnect } from './components/WalletConnect';
 import { MintForm } from './components/MintForm';
 import { VerifyForm } from './components/VerifyForm';
 import { HelpCard } from './components/HelpCard';
+import { AiIdeasAccordion } from './components/AiIdeasAccordion';
 import { CONTRACT_ADDRESS, EXPLORER_BASE_URL } from './utils/config';
 import './App.css';
 
@@ -41,6 +42,7 @@ function App() {
         </div>
 
         <HelpCard />
+        <AiIdeasAccordion />
       </main>
 
       <footer className="footer">
