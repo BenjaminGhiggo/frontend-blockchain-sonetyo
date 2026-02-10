@@ -10,7 +10,10 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="container">
-          <h1>Sonetyo</h1>
+          <h1 className="logo">
+            <span className="logo-icon" aria-hidden="true">𝄞</span>
+            <span className="logo-text">Sonetyo</span>
+          </h1>
           <p className="tagline">Registra y protege tus ideas musicales on-chain</p>
         </div>
       </header>
@@ -18,15 +21,21 @@ function App() {
       <main className="container main">
         <div className="info-banner" role="complementary" aria-label="Información del contrato">
           <p>
-            Contrato en{' '}
-            <a
-              href={`${EXPLORER_BASE_URL}/address/${CONTRACT_ADDRESS}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {CONTRACT_ADDRESS.slice(0, 6)}…{CONTRACT_ADDRESS.slice(-4)}
-            </a>
-            {' '}(Syscoin Tanenbaum Testnet)
+            {CONTRACT_ADDRESS ? (
+              <>
+                Contrato en{' '}
+                <a
+                  href={`${EXPLORER_BASE_URL}/address/${CONTRACT_ADDRESS}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {CONTRACT_ADDRESS.slice(0, 6)}…{CONTRACT_ADDRESS.slice(-4)}
+                </a>
+                {' '}(zkSYS PoB Devnet)
+              </>
+            ) : (
+              <>Red: zkSYS PoB Devnet (57042). Tras desplegar, configura <code>VITE_CONTRACT_ADDRESS</code> en <code>frontend/.env</code>.</>
+            )}
           </p>
         </div>
 
@@ -43,11 +52,7 @@ function App() {
       <footer className="footer">
         <div className="container">
           <p>Sonetyo — Registro y tokenización de creatividad musical</p>
-          <p>
-            <a href="https://faucet.syscoin.org/" target="_blank" rel="noopener noreferrer">
-              Obtener tSYS del faucet
-            </a>
-          </p>
+          <p>Red: zkSYS PoB Devnet (57042) · Gas (TSYS) acreditado a wallets registradas en el programa</p>
         </div>
       </footer>
     </div>

@@ -1,5 +1,6 @@
-// Configuración del contrato SonetyoNFT desplegado en Tanenbaum
-export const CONTRACT_ADDRESS = "0x136aC7D8D981f013524718B46AbB83d99c265f3f";
+// Configuración del contrato SonetyoNFT — zkSYS PoB Devnet (57042)
+// Dirección leída desde las variables de entorno de Vite (frontend/.env)
+export const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || "";
 
 // ABI mínima de SonetyoNFT (solo funciones que usamos)
 export const CONTRACT_ABI = [
@@ -12,17 +13,17 @@ export const CONTRACT_ABI = [
   "event SonetyoVerified(uint256 indexed tokenId, address indexed verifier, uint256 newVerificationCount)"
 ];
 
-// Configuración de red Syscoin Tanenbaum
-export const TANENBAUM_CONFIG = {
-  chainId: "0x1644", // 5700 en hex
-  chainName: "Syscoin Tanenbaum Testnet",
-  rpcUrls: ["https://rpc.tanenbaum.io"],
+// Red zkSYS PoB Devnet (Proof-of-Builders)
+export const DEVNET_CONFIG = {
+  chainId: "0xDED2", // 57042 en hex
+  chainName: "zkSYS PoB Devnet",
+  rpcUrls: ["https://rpc-pob.dev11.top"],
   nativeCurrency: {
-    name: "tSYS",
-    symbol: "tSYS",
+    name: "TSYS",
+    symbol: "TSYS",
     decimals: 18
   },
-  blockExplorerUrls: ["https://explorer.tanenbaum.io"]
+  blockExplorerUrls: ["https://explorer-pob.dev11.top"]
 };
 
-export const EXPLORER_BASE_URL = "https://explorer.tanenbaum.io";
+export const EXPLORER_BASE_URL = "https://explorer-pob.dev11.top";

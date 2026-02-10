@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { FAUCET_URL } from '../utils/errorMessages';
 
 /**
  * Ayuda colapsable (Heurística 8 - Diseño minimalista; Heurística 10 - Ayuda y documentación).
@@ -25,7 +24,7 @@ export function HelpCard() {
           <>
             <ol className="help-card__list">
               <li>Conecta tu wallet (Pali Wallet).</li>
-              <li>La app cambiará automáticamente a la red Tanenbaum.</li>
+              <li>La app cambiará automáticamente a la red zkSYS PoB Devnet (57042).</li>
               <li>Sube un archivo de audio corto (beat, melodía, loop, tarareo).</li>
               <li>El sistema calculará el hash automáticamente.</li>
               <li>Haz clic en &quot;Registrar Idea&quot; para registrar tu idea on-chain.</li>
@@ -34,10 +33,8 @@ export function HelpCard() {
             <p className="help-card__note">
               <strong>Nota:</strong> Este es un MVP. El audio se procesa en tu navegador (hash) y solo el hash se guarda on-chain. La metadata (IPFS) es opcional.
             </p>
-            <p className="help-card__links">
-              <a href={FAUCET_URL} target="_blank" rel="noopener noreferrer">
-                Obtener tSYS del faucet →
-              </a>
+            <p className="help-card__note">
+              En la Devnet PoB, el gas (TSYS) se acredita a las wallets registradas en el programa. No hay faucet público; usa la misma wallet con la que te registraste.
             </p>
           </>
         )}

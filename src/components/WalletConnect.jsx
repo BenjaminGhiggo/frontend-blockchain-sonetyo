@@ -30,13 +30,13 @@ export function WalletConnect() {
     );
   }
 
-  const onCorrectNetwork = chainId === 5700;
+  const onCorrectNetwork = chainId === 57042;
 
   return (
     <div className={`wallet-card wallet-card--connected ${!onCorrectNetwork ? 'wallet-card--wrong-network' : ''}`}>
       <div className="wallet-info">
         <p className="wallet-card__status" aria-live="polite">
-          Estado: conectado {onCorrectNetwork ? '· Red correcta (Tanenbaum)' : ''}
+          Estado: conectado {onCorrectNetwork ? '· Red correcta (zkSYS PoB Devnet)' : ''}
         </p>
         <div>
           <strong>Cuenta:</strong>{' '}
@@ -45,7 +45,7 @@ export function WalletConnect() {
         <div>
           <strong>Red:</strong>{' '}
           <span className="network">
-            {onCorrectNetwork ? 'Tanenbaum (Testnet)' : `Otra red (ID: ${chainId}). Cambia a Tanenbaum.`}
+            {onCorrectNetwork ? 'zkSYS PoB Devnet (57042)' : `Otra red (ID: ${chainId}). Cambia a zkSYS PoB Devnet.`}
           </span>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers';
-import { CONTRACT_ADDRESS, CONTRACT_ABI, TANENBAUM_CONFIG } from '../utils/config';
+import { CONTRACT_ADDRESS, CONTRACT_ABI, DEVNET_CONFIG } from '../utils/config';
 
 export const WalletContext = createContext(null);
 
@@ -15,23 +15,23 @@ export function WalletProvider({ children }) {
 
   const hasWallet = typeof window !== 'undefined' && window.ethereum;
 
-  const ensureTanenbaumNetwork = useCallback(async () => {
+  const ensureDevnetNetwork = useCallback(async () => {
     try {
       const currentChainId = await window.ethereum.request({
         method: "eth_chainId"
       });
 
-      if (currentChainId !== TANENBAUM_CONFIG.chainId) {
+      if (currentChainId !== DEVNET_CONFIG.chainId) {
         try {
           await window.ethereum.request({
             method: "wallet_switchEthereumChain",
-            params: [{ chainId: TANENBAUM_CONFIG.chainId }]
+            params: [{ chainId: DEVNET_CONFIG.chainId }]
           });
         } catch (switchError) {
           if (switchError.code === 4902) {
             await window.ethereum.request({
               method: "wallet_addEthereumChain",
-              params: [TANENBAUM_CONFIG]
+              params: [DEVNET_CONFIG]
             });
           } else {
             throw switchError;
@@ -40,7 +40,7 @@ export function WalletProvider({ children }) {
       }
     } catch (err) {
       console.error("Error al cambiar de red:", err);
-      throw new Error("No se pudo cambiar a la red Tanenbaum");
+      throw new Error("No se pudo cambiar a la red zkSYS PoB Devnet");
     }
   }, []);
 
@@ -74,16 +74,14 @@ export function WalletProvider({ children }) {
       const browserSigner = await browserProvider.getSigner();
       setSigner(browserSigner);
 
-      await ensureTanenbaumNetwork();
+      await ensureDevnetNetwork();
 
       const network = await browserProvider.getNetwork();
       setChainId(Number(network.chainId));
 
-      const contractInstance = new ethers.Contract(
-        CONTRACT_ADDRESS,
-        CONTRACT_ABI,
-        browserSigner
-      );
+      const contractInstance = CONTRACT_ADDRESS
+        ? new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, browserSigner)
+        : null;
       setContract(contractInstance);
 
     } catch (err) {
@@ -92,7 +90,7 @@ export function WalletProvider({ children }) {
     } finally {
       setIsConnecting(false);
     }
-  }, [hasWallet, ensureTanenbaumNetwork]);
+  }, [hasWallet, ensureDevnetNetwork]);
 
   useEffect(() => {
     if (!hasWallet) return;
