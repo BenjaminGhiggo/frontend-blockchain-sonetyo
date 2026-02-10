@@ -21,21 +21,15 @@ function App() {
       <main className="container main">
         <div className="info-banner" role="complementary" aria-label="Información del contrato">
           <p>
-            {CONTRACT_ADDRESS ? (
-              <>
-                Contrato en{' '}
-                <a
-                  href={`${EXPLORER_BASE_URL}/address/${CONTRACT_ADDRESS}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {CONTRACT_ADDRESS.slice(0, 6)}…{CONTRACT_ADDRESS.slice(-4)}
-                </a>
-                {' '}(zkSYS PoB Devnet)
-              </>
-            ) : (
-              <>Red: zkSYS PoB Devnet (57042). Tras desplegar, configura <code>VITE_CONTRACT_ADDRESS</code> en <code>frontend/.env</code>.</>
-            )}
+            Contrato en{' '}
+            <a
+              href={`${EXPLORER_BASE_URL}/address/${CONTRACT_ADDRESS}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {CONTRACT_ADDRESS.slice(0, 6)}…{CONTRACT_ADDRESS.slice(-4)}
+            </a>
+            {' '}(zkSYS PoB Devnet)
           </p>
         </div>
 
